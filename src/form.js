@@ -3,11 +3,11 @@ import React from "react";
 export default class MyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", entrystate: "name" };
+    this.state = { username: "", password: "", entryState: "name" };
   }
   myChangeHandler = event => {
     event.preventDefault();
-    if (this.state.entrystate === "name"){
+    if (this.state.entryState === "name") {
       this.setState({ username: event.target.value });
     } else {
       this.setState({ password: event.target.value });
@@ -17,34 +17,32 @@ export default class MyForm extends React.Component {
   myProceedHandler = event => {
     event.preventDefault();
     // alert(this.state.entrystate);
-    if (this.state.entrystate === "password") {
-      this.setState({ entrystate: "name" });
+    if (this.state.entryState === "password") {
+      this.setState({ entryState: "name" });
     } else {
-      this.setState({ entrystate: "password" });
+      this.setState({ entryState: "password" });
     }
   };
 
-  clearInput = () =>{
-
-  }
+  clearInput = () => {};
   render() {
     let header = "";
-/*     if (this.state.username) {
+    /*     if (this.state.username) {
       header = <h1>Hello {this.state.username}</h1>;
     } else {
       header = "";
     } */
     let userInput;
-    if ( this.state.entrystate === "name"){
-      userInput = <input type="input" onChange={this.myChangeHandler} />
-      } else {
-       userInput =  <input type="password" onChange={this.myChangeHandler} />
-      }
-return (
+    if (this.state.entryState === "name") {
+      userInput = <input type="input" onChange={this.myChangeHandler} />;
+    } else {
+      userInput = <input type="password" onChange={this.myChangeHandler} />;
+    }
+    return (
       <div>
         <form>
           {header}
-          <p>Please enter your {this.state.entrystate}:</p>
+          <p>Please enter your {this.state.entryState}:</p>
           {userInput}
         </form>
         <button onClick={this.myProceedHandler}> Proceed </button>
