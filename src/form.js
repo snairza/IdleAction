@@ -3,7 +3,14 @@ import React from "react";
 export default class MyForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "", entryState: "name" };
+    this.state = {
+      userInput: "",
+      username: "",
+      password: "",
+      entryState: "name"
+    };
+    this.myChangeHandler = this.myChangeHandler.bind(this);
+    this.myProceedHandler = this.myProceedHandler.bind(this);
   }
   myChangeHandler = event => {
     event.preventDefault();
@@ -22,9 +29,14 @@ export default class MyForm extends React.Component {
     } else {
       this.setState({ entryState: "password" });
     }
+    // this.setState({ userInput: "" });
+    this.clearInput();
   };
 
-  clearInput = () => {};
+  clearInput = () => {
+    this.setState({ userInput: "" });
+  };
+
   render() {
     let header = "";
     /*     if (this.state.username) {
@@ -32,18 +44,32 @@ export default class MyForm extends React.Component {
     } else {
       header = "";
     } */
-    let userInput;
+    let userInputValue;
     if (this.state.entryState === "name") {
-      userInput = <input type="input" onChange={this.myChangeHandler} />;
+      userInputValue = (
+        <input
+          // text={this.state.userInput}
+          type="input"
+          onFocus={this.clearInput}
+          onChange={this.myChangeHandler}
+        />
+      );
     } else {
-      userInput = <input type="password" onChange={this.myChangeHandler} />;
+      userInputValue = (
+        <input
+          // text={this.state.userInput}
+          onFocus={this.clearInput}
+          type="password"
+          onChange={this.myChangeHandler}
+        />
+      );
     }
     return (
       <div>
         <form>
           {header}
           <p>Please enter your {this.state.entryState}:</p>
-          {userInput}
+          {userInputValue}
         </form>
         <button onClick={this.myProceedHandler}> Proceed </button>
       </div>
