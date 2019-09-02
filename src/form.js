@@ -7,7 +7,9 @@ export default class MyForm extends React.Component {
       userInput: "",
       username: "",
       password: "",
-      entryState: "name"
+      entryState: "name",
+      //Temporary
+      result:""
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.myProceedHandler = this.myProceedHandler.bind(this);
@@ -26,8 +28,10 @@ export default class MyForm extends React.Component {
     // alert(this.state.entrystate);
     if (this.state.entryState === "password") {
       this.setState({ entryState: "name" });
+      this.setState({result:"Done"});
     } else {
       this.setState({ entryState: "password" });
+      this.setState({result:""});
     }
     // this.setState({ userInput: "" });
     this.clearInput();
@@ -72,6 +76,7 @@ export default class MyForm extends React.Component {
           {userInputValue}
         </form>
         <button onClick={this.myProceedHandler}> Proceed </button>
+        <p> {this.state.result} </p>
       </div>
     );
   }
