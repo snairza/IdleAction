@@ -84,4 +84,9 @@ export default class MyForm extends React.Component {
       </div>
     );
   }
+
+  // Auth functions
+  AuthUser(user, pass) {
+    var data = require("./auth");
+  }
 }

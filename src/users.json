@@ -1,5 +1,8 @@
 {
-  "1212": "operator",
-  "3434": "sponsor",
-  "1234": "supervisor"
+  "users": [
+    { "id": "4545", "role": "operator" },
+    { "id": "1212", "role": "citCoin" },
+    { "id": "2323", "role": "citOperator" },
+    { "id": "1111", "role": "supervisor" }
+  ]
 }
