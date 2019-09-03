@@ -8,12 +8,14 @@ export default class MyForm extends React.Component {
       username: "",
       password: "",
       entryState: "name",
+      headerMessage: "Please enter your",
       //Temporary
-      result:""
+      result: ""
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.myProceedHandler = this.myProceedHandler.bind(this);
   }
+
   myChangeHandler = event => {
     event.preventDefault();
     if (this.state.entryState === "name") {
@@ -28,10 +30,10 @@ export default class MyForm extends React.Component {
     // alert(this.state.entrystate);
     if (this.state.entryState === "password") {
       this.setState({ entryState: "name" });
-      this.setState({result:"Done"});
+      this.setState({ result: "Done" });
     } else {
       this.setState({ entryState: "password" });
-      this.setState({result:""});
+      this.setState({ result: "" });
     }
     // this.setState({ userInput: "" });
     this.clearInput();
@@ -72,7 +74,9 @@ export default class MyForm extends React.Component {
       <div>
         <form>
           {header}
-          <p>Please enter your {this.state.entryState}:</p>
+          <p>
+            {this.state.headerMessage} {this.state.entryState}:
+          </p>
           {userInputValue}
         </form>
         <button onClick={this.myProceedHandler}> Proceed </button>

@@ -1,0 +1,7 @@
+{
+  "operator": ["Deposit", "Drop", "Report"],
+  "sponsor": ["*"],
+  "supervisor": ["Deposit", "Drop", "Report", "NoteCollection"],
+  "cit": ["NoteCollection"],
+  "citCoin": ["CoinCollection"]
+}
