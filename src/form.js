@@ -31,23 +31,24 @@ export default class MyForm extends React.Component {
   }
 
   determineRole(user) {
-    var users = require("./users")
-    var role = "unknown"
-    for (var i = 0; i < users.length; i++) {
-      if (user === users[i].id) {
-        role = users[i].role
+    var data = require("./users");
+    var role = "unknown";
+    for (var i = 0; i < data.users.length; i++) {
+      if (user === data.users[i].id) {
+        role = data.users[i].role;
+        break;
       }
     }
 
     return role;
   }
 
-  determinePermissions(user){
-    var roles = require("./roles")
-    var permissions = []
-    for(var i = 0; i < roles.length; i++) {
-      if (user === roles[i] ) {
-        permissions = roles[i].permissions;
+  determinePermissions(role) {
+    var data = require("./roles");
+    var permissions = [];
+    for (var i = 0; i < data.roleInfo.length; i++) {
+      if (role === data.roleInfo[i].role) {
+        permissions = data.roleInfo[i].permissions;
         break;
       }
     }
@@ -65,12 +66,14 @@ export default class MyForm extends React.Component {
 
   myProceedHandler = event => {
     event.preventDefault();
-    // alert(this.state.entrystate);
     if (this.state.entryState === "password") {
       this.setState({ entryState: "name" });
-      if (this.authUser(this.state.username, this.state.password))
+      if (this.authUser(this.state.username, this.state.password)) {
+        //Check permissions
+        var perms = this.determinePermissions(this.determineRole(this.state.username));
+       // this.setState({ info: perms });
         this.setState({ result: "Correct" });
-      else this.setState({ result: "Incorrect id or password" });
+      } else this.setState({ result: "Id and password mismatch" });
     } else {
       this.setState({ entryState: "password" });
       this.setState({ result: "" });

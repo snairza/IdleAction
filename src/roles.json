@@ -1,22 +1,40 @@
-[
-  {
-    "role": "operator",
-    "permissions": ["Deposit", "Drop", "Report"]
-  },
-  {
-    "role": "sponsor",
-    "permissions": ["*"]
-  },
-  {
-    "role": "supervisor",
-    "permissions": ["Deposit", "Drop", "Report", "NoteCollection"]
-  },
-  {
-    "role": "cit",
-    "permissions": ["NoteCollection", "CoinCollection"]
-  },
-  {
-    "role": "citCoin",
-    "permissions": ["CoinCollection"]
-  }
-]
+{
+  "roleInfo": [
+    {
+      "role": "operator",
+      "permissions": [
+        "Deposit",
+        "Drop",
+        "Report"
+      ]
+    },
+    {
+      "role": "sponsor",
+      "permissions": [
+        "*"
+      ]
+    },
+    {
+      "role": "supervisor",
+      "permissions": [
+        "Deposit",
+        "Drop",
+        "Report",
+        "NoteCollection"
+      ]
+    },
+    {
+      "role": "cit",
+      "permissions": [
+        "NoteCollection",
+        "CoinCollection"
+      ]
+    },
+    {
+      "role": "citCoin",
+      "permissions": [
+        "CoinCollection"
+      ]
+    }
+  ]
+}
