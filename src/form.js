@@ -10,10 +10,48 @@ export default class MyForm extends React.Component {
       entryState: "name",
       headerMessage: "Please enter your",
       //Temporary
-      result: ""
+      result: "",
+      info: ""
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.myProceedHandler = this.myProceedHandler.bind(this);
+    this.authUser = this.authUser.bind(this);
+  }
+  // Auth functions
+  authUser(user, pass) {
+    var data = require("./auth");
+    var found = false;
+    for (var i = 0; i < data.users.length; i++) {
+      if (data.users[i].id === user && data.users[i].password === pass) {
+        found = true;
+        break;
+      }
+    }
+    return found;
+  }
+
+  determineRole(user) {
+    var users = require("./users")
+    var role = "unknown"
+    for (var i = 0; i < users.length; i++) {
+      if (user === users[i].id) {
+        role = users[i].role
+      }
+    }
+
+    return role;
+  }
+
+  determinePermissions(user){
+    var roles = require("./roles")
+    var permissions = []
+    for(var i = 0; i < roles.length; i++) {
+      if (user === roles[i] ) {
+        permissions = roles[i].permissions;
+        break;
+      }
+    }
+    return permissions;
   }
 
   myChangeHandler = event => {
@@ -30,7 +68,9 @@ export default class MyForm extends React.Component {
     // alert(this.state.entrystate);
     if (this.state.entryState === "password") {
       this.setState({ entryState: "name" });
-      this.setState({ result: "Done" });
+      if (this.authUser(this.state.username, this.state.password))
+        this.setState({ result: "Correct" });
+      else this.setState({ result: "Incorrect id or password" });
     } else {
       this.setState({ entryState: "password" });
       this.setState({ result: "" });
@@ -81,12 +121,8 @@ export default class MyForm extends React.Component {
         </form>
         <button onClick={this.myProceedHandler}> Proceed </button>
         <p> {this.state.result} </p>
+        <p> {this.state.info} </p>
       </div>
     );
-  }
-
-  // Auth functions
-  AuthUser(user, pass) {
-    var data = require("./auth");
   }
 }

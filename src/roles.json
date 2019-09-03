@@ -1,7 +1,22 @@
-{
-  "operator": ["Deposit", "Drop", "Report"],
-  "sponsor": ["*"],
-  "supervisor": ["Deposit", "Drop", "Report", "NoteCollection"],
-  "cit": ["NoteCollection"],
-  "citCoin": ["CoinCollection"]
-}
+[
+  {
+    "role": "operator",
+    "permissions": ["Deposit", "Drop", "Report"]
+  },
+  {
+    "role": "sponsor",
+    "permissions": ["*"]
+  },
+  {
+    "role": "supervisor",
+    "permissions": ["Deposit", "Drop", "Report", "NoteCollection"]
+  },
+  {
+    "role": "cit",
+    "permissions": ["NoteCollection", "CoinCollection"]
+  },
+  {
+    "role": "citCoin",
+    "permissions": ["CoinCollection"]
+  }
+]
